@@ -1,0 +1,226 @@
+PARSER_BEGIN (compilador)
+import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+class compilador
+{
+	public static List <String> listaB = new ArrayList<String> ();
+	public static void Contador(String Campo)
+	{
+		int Ubicacion=compilador.listaB.indexOf(Campo);
+		if (Ubicacion==-1)
+		{
+			compilador.listaB.add(Campo);
+			Ubicacion=compilador.listaB.indexOf(Campo);
+			System.out.print(Ubicacion);
+		}
+		else
+		{
+			System.out.print(Ubicacion);
+		}
+	}
+	public static void main (String[]args)throws ParseException
+	{
+		try
+		{
+			compilador analizador = new compilador(System.in);
+			analizador.Inicio();
+			System.out.print("Finished");
+		}
+		catch(ParseException e)
+		{
+			System.out.println(e.getMessage());
+			System.out.print("Unfinished");
+		}
+	}
+}
+PARSER_END (compilador)
+
+TOKEN:
+ {
+  <Void:"Void" >{System.out.println(" Void ----------  \n ");}
+}
+
+TOKEN:
+ {
+  <system:"System" >{System.out.println(" system ---------- \n ");}
+}
+TOKEN:
+ {
+  <random:"random" >{System.out.println(" random ---------- \n ");}
+}
+TOKEN:
+ {
+  <Nespacio:"namespace" >{System.out.println(" Nespacio ----------\n ");}
+}
+TOKEN:
+ {
+  <caso:"case" >{System.out.println(" caso ---------- \n ");}
+}
+TOKEN:
+ {
+  <cerrar:"Console.close" >{System.out.println(" cerrar ---------- \n ");}
+}
+TOKEN:
+ {
+  <sobrecarga:"Override" >{System.out.println(" sobrecarga ----------  \n ");}
+}
+TOKEN:
+ {
+  <interfaz:"interface" >{System.out.println(" interfaz ----------  \n ");}
+}
+TOKEN:
+ {
+  <Pausar:"pause" >{System.out.println(" Pausar ---------- \n ");}
+}
+
+
+TOKEN:
+ {
+  <Faritmetica:"Math.abs" |  "Math.exp" | "Math.log" | "Math.log10" | "Math.log1" | "Math.log2" | "Math.max" |  "Math.min" | "Math.random" |  "Math.sor" |  "Math.shuffle" | "Math.choice" | "Math.round" | "Math.sqrt" |  "Math.pow" | "Math.ceil" | "Math.floor" | "Math.cbrt" | "Math.exp" | "Math.sign" | "Math.randint" |  "Math.random.normal" |  "Math.random.binomial" | "Math.random.poisson" | "Math.random.uniform" | "Math.random.logistic" |  "Math.random.multinomial" | "Math.random.exponential" | "Math.random.chisquare" | "Math.random.rayleigh" | "Math.random.pareto" | "Math.lcm" |  "Math.gcd" | "Math.trunc" | "Math.fix" |  "Math.around" | "Math.hypot" | "Math.deg2rad" |  "Math.rad2de" |  "Math.quadratic" |  "Math.cubic" | "Math.squareArea" |  "Math.rectArea" | "Math.circleArea" |  "Math.triangleArea" | "Math.trapArea" |  "Math.regpolyArea" | "Math.bigmul" | "Math.BitDecrement" |  "Math.BitIncrement"| "Math.Clamp" | "Math.CopySing" | "Math.DivRem" |  "Math.MaxMagnitude" | "Math.MinMagnitude" | "Math.pi" | "Math.scale" | "Math.scaleB" | "Math.sign" >{System.out.println(" Faritmetica ---------- "+image+" \n ");}
+ }
+TOKEN:
+ {
+  <Ftrigonometrica: "Math.acos" | "Math.acosh" | "Math.asin" | "Math.atan" | "Math.atan2" | "Math.atanh" | "Math.cos" | "Math.cosh" | "Math.sin" | "Math.sinh" | "Math.tanh" >{System.out.println(" Ftrigonometrica ---------- "+image+" \n ");}
+ }
+ TOKEN:
+ {
+  <Fstring: "Capitalize"| "casefold" | "center" | "count"| "encode" | "endswith" | "Expandtabs" | "find" | "format" | "format_map" | "index" | "isalnum" | "Isalpha"| "isascii" | "isdecimal" | "isdigit" | "islower" | "isnumeric"| "Isprintable" | "isspace" | "istitle"| "issupper"| "join" | "lower" | "istrip"| "Maketrans" | "partition" | "replace" | "rindex" | "rjust"| "rsplit"| "rstrip" | "Split" | "upper" | "zfill"  >{System.out.println(" Fstring ---------- "+image+" \n ");}
+ }
+TOKEN:
+ {
+  <Flambda:"lambda" >{System.out.println(" Flambda ----------  \n ");}
+}
+TOKEN:
+ {
+  <Flineas: "Console.readkey" | "Console.readline" | "Consol e.writeline" | "Console.write" | "print" | "println" | "scan" | "scanf" | "input" >{System.out.println(" Flineas ---------- "+image+" \n ");}
+}
+TOKEN:
+ {
+  <Fmensaje: "Alert" |  " Message.Box" >{System.out.println(" Fmensaje ---------- "+image+" \n ");}
+}
+TOKEN:
+ {
+  <Flimpiar: "Console.Clear" | "cls" | "clear" >{System.out.println(" Flimpiar ---------- "+image+" \n ");}
+}
+
+TOKEN:
+ {
+  <Ologicos: "and" | "or" | "not" | "||" | "&&" >{System.out.println(" Ologicos ---------- "+image+" \n ");}
+}
+TOKEN:
+ {
+  <Orelacionales: "<" | ">" | "<=" | ">=" | "==" | "!=" >{System.out.println(" Ologicos ---------- "+image+" \n ");}
+}
+TOKEN:
+ {
+  <condicional: "switch" | "if" | "try" | "elif" >{System.out.println(" condicional ---------- "+image+" \n ");}
+}
+TOKEN:
+ {
+  <defaults: "else" | "cath" | "otherwise" >{System.out.println(" defaults ---------- "+image+" \n ");}
+}
+TOKEN:
+ {
+  <acceso: "private" | "static" | "protected" | "public" | "local" | "internal" >{System.out.println(" acceso ---------- "+image+" \n ");}
+}
+TOKEN:
+ {
+  <booleano: "true" | "false" >{System.out.println(" booleano ---------- "+image+" \n ");}
+}
+TOKEN:
+ {
+  <ciclos: "for" | "do" | "foreach" | "while" >{System.out.println(" ciclos ---------- "+image+" \n ");}
+}
+TOKEN:
+ {
+  <salto: "Goto" | "return" | "break" >{System.out.println(" salto ---------- "+image+" \n ");}
+}
+TOKEN:
+ {
+  <Tdato: "int" | "char" | "float" | "short" | "long" | "byte" | "double" | "sbyte" | " string" | "uint" | "ulong" | "integer" | "Boolean" | "const" | "enu m" | "dynamic" | "tuple" >{System.out.println(" Tdato ---------- "+image+" \n ");}
+}
+TOKEN:
+ {
+  <EDD: "Array" | "list" | "queue" | "stack" >{System.out.println(" EDD ---------- "+image+" \n ");}
+}
+TOKEN:
+ {
+  <etiquetas: "<html>" | "</html>" | "<head>" | "</head>" | "<header>" | "</header>" | "<body>" | "</body>" | "<meta>" | "<div>" | "</div>" | "<section>" | "</section>" | "<article>" | "</article>" | "<image>" | "</image>" | "<script>" | "</script>" | "<p>" | "</p>" | "<h1>" | "</h1>" | "<h2>" | "</h2>" | "<h3>" | "</h3>" | "<title>" | "</title>" | "<style>" | "</style>" | "<nav>" | "</nav>" | "<main>" | "</main>" | "<footer>" | "</fooer>" | "<li>" | "</li>" | "<ul>" | "</ul>" | "<a>" | "</a>" | "<table>" | "<dt>" | "<th>" | "<figure>" | "<map>" | "<span>" | "<br>" >{System.out.println(" etiquetas ---------- "+image+" \n ");}
+}
+TOKEN:
+ {
+  <dentro: "in">{System.out.println(" dentro ----------  \n ");}
+}
+TOKEN:
+ {
+  <thread: "Thread">{System.out.println(" Thread ----------  \n ");} //
+}
+
+TOKEN:
+ {
+  <ASIGANCION: "=" >{System.out.println(" asignacion ----------  \n ");}
+}
+TOKEN:
+ {
+  <alias: "as" >{System.out.println(" alias ---------- \n ");}
+}
+
+
+
+TOKEN:
+{
+	 <PAR_IZQ:				"(">{System.out.println("PAR_IZQ	\r\n");}
+	|<PAR_DER:				")">{System.out.println("PAR_DER	\r\n");}
+	|<LLAVE_IZQ:			"{">{System.out.println("LLAVE_IZQ\r\n");}
+	|<LLAVE_DER:			"}">{System.out.println("LLAVE_DER\r\n");}
+	|<COR_IZQ:				"[">{System.out.println("COR_IZQ	\r\n");}
+	|<COR_DER:				"]">{System.out.println("COR_DER	\r\n");}
+	|<PUNTO:				".">{System.out.println("PUNTO	\r\n");}
+	|<COMA:					",">{System.out.println("COMA	\r\n");}
+	|<PUNTO_Y_COMA:			";">{System.out.println("PUNTO_Y_COMA\t\r\n");}
+	|<DOS_PUNTOS:			":">{System.out.println("DOS_PUNTOS \r\n");}
+	|<COMILLA:				"'">{System.out.println("COMILLA	\r\n");}
+	|<COMILLA_DOBLE:		"\"">{System.out.println("COMILLA_DOBLE \r\n");}
+	|<ARROBA:				"@">{System.out.println("ARROBA	\r\n");}
+	|<guionbajo:			"_">{System.out.println("guionbajo\r\n");}
+}
+
+TOKEN:
+{
+	<Omatematicos:		"*"|"+"|"-"|"/"|"^"|"%"> {System.out.println("	Omatematicos\t"+image+"\r\n");}
+}
+
+TOKEN:
+{
+
+	<numero:				(["0"-"9"])>{System.out.println("	numero"+image+"\r\n");}
+	|<ID:		(<letra>)(<letra_S>|<numero>)*(<guionbajo>)?>{String entrada=""+ image+ ""; System.out.print("	ID("); compilador.Contador(entrada); System.out.print(")\r\n\n");}
+	|<letra_S:				(<letra>)+>{System.out.println("	letra_S	"+image+"\r\n");}
+	|<letra:				(["a"-"z","A"-"Z"])>{System.out.println("	letra	"+image+"\r\n");}
+}
+
+
+
+SKIP:
+{
+	" "|"\t"|"\r"|"\n"
+}
+
+
+
+void Inicio(): {}
+{
+	(
+<numero>|<ID>|<letra_S>|<letra>|<Omatematicos>
+|<PAR_IZQ>|<PAR_DER>|<LLAVE_IZQ>|<LLAVE_DER>|<COR_IZQ>|<COR_DER>|<PUNTO>|<COMA>|<PUNTO_Y_COMA>|<DOS_PUNTOS>
+|<ARROBA>|<guionbajo>|<ASIGANCION>|<COMILLA_DOBLE>| <COMILLA> |<alias >|< Void >|< system >|< random >|< Nespacio >
+|< caso >|< cerrar >|< sobrecarga >|< interfaz >|< Pausar >
+|< Faritmetica > | < Ftrigonometrica >|< Flineas >|< Fstring >|< Flambda >
+|< Fmensaje >|< Flimpiar >|< Ologicos > | < Orelacionales >
+|< condicional >|< defaults >
+|< acceso >|< booleano >|< ciclos >|< salto >|< Tdato >|< EDD >|< etiquetas >|< dentro >|<thread>
+
+	)+<EOF>
+}
+
